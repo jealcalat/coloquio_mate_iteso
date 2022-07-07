@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Estadística a través de las simulaciones</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emmanuel Alcalá" />
+    <meta name="date" content="2022-07-06" />
+    <script src="coloquio_iteso_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan_theme.css" type="text/css" />
+    <link rel="stylesheet" href="libs/my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: center, title-slide, inverse-slide
+
+&lt;style&gt;
+.title-slide .remark-slide-number {
+  display: none;
+}
+
+.title-slide h1 {
+font-weight: bold;
+font-size: 50px;
+color: #5F7C8C;
+}
+
+.title-slide h2 {
+font-weight: bold;
+font-size: 40px;
+color: #5F7C8C;
+}
+
+.subtitle-slide h1 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.inverse-slide {
+  background-color: #EFF8F4;
+  color: #B80D48;
+}
+
+
+.black-slide {
+  background-color: #020202;
+  color: #B80D48;
+}
+
+&lt;/style&gt;
+
+&lt;style&gt;
+.remark-slide-content {
+  font-size: 28px;
+  color: #1f4b64;
+}
+}
+
+&lt;/style&gt;
+
+&lt;style&gt;
+
+.center2 {
+  margin: -1%;
+  position: absolute;
+  top: 65%;
+  left: 51%;
+  width: 180px;
+  height: 128px;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+
+.my-one-page-font {
+  font-size: 20px;
+}
+
+&lt;/style&gt;
+
+&lt;style&gt;
+blockquote {
+    background-color: #3A0E38;
+}
+&lt;/style&gt;
+
+# Estadística a través de las simulaciones
+# Emmanuel Alcalá
+## Departamento de Matemáticas y Física
+
+.center2[
+&lt;img src="img/logo_ITESO.svg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: middle
+
+## Problema
+
+.pull-left[
+
+```
+#&gt; 
+#&gt;  ----- 
+#&gt; La estadística es muy importante para todos 
+#&gt;  ------ 
+#&gt;     \   ^__^ 
+#&gt;      \  (oo)\ ________ 
+#&gt;         (__)\         )\ /\ 
+#&gt;              ||------w|
+#&gt;              ||      ||
+```
+]
+
+.pull-right[
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+como para enseñarla solo a los ~~matemáticos~~
+
+.typed[]
+
+]
+
+---
+class: middle
+
+## Problema
+
+.pull-left[
+
+- La ubicuidad de los **datos** en todos los ámbitos y profesiones.
+  
+- La dependencia de la estadística en las matemáticas.
+  
+- Las carencias en matemáticas en profesiones CTIM&lt;sup&gt;1&lt;/sup&gt;.
+
+- La necesidad de ciudadanos alfabetizados en datos (*data literacy*).
+
+]
+
+.pull-right[
+
+&lt;img src="img/data_sources.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+`$$\\[0.5in]$$`
+
+.footnote[
+  [1] **C**iencia, **T**ecnología, **I**ngeniería y **M**atemáticas.
+]
+
+---
+class: subtitle-slide, middle, inverse-slide
+# ¿Cómo enseñar estadística en carreras no CTIM?
+
+
+--
+
+  # Una propuesta:
+
+  # .charcoal[Estadística basada en simulaciones]
+
+---
+class:middle
+
+.content-box-blue[
+  **Simulación** 
+  
+  Imitación basada en modelos de un proceso para estudiar su comportamiento. En .orange[estadística], una simulación es la imitación de un proceso aleatorio.
+]
+--
+  
+La simulación a volver claros y concretos conceptos, ya que permite ver interactuar con el proceso que se simula: cambiar condiciones y observar los resultados&lt;sup&gt;1&lt;/sup&gt; .
+
+.footnote[
+  [1] Sigal et al (2016). Play it again: Teaching statistics with Monte Carlo simulation. *Journal of Statistics Education*.
+]
+
+---
+class: subtitle-slide, middle, inverse-slide
+
+## Ejemplo: distribución muestral de la media
+
+---
+.content-box-blue[
+  **Distribución muestral** 
+  
+  La distribución de un estadístico, como la media, cuando se toman ensayos repetidos de tamaño `\(n\)`.
+]
+
+--
+
+Típicamente en política los candidatos suelen mostrar como honesta aquella encuesta en que le fue mejor.
+
+--
+
+En ocasiones, instrumentalizan políticamente los resultados: las encuestas en las que les va peor están *cuchareadas* o amañadas. 
+
+--
+  
+Muchas personas ven en esta variabilidad en los resultados como un indicio de corrupción.
+
+--
+
+Pero la explicación *puede* ser más sencilla: el proceso de medir la opinión es aleatorio, y diferentes encuestas miden diferentes muestras.
+
+---
+class: middle 
+
+- El camino natural para enseñar el concepto de la distribución muestral de la media es usar algunos **teoremas**.
+
+--
+
+- Pero los **teoremas**, en calidad de abstracciones, son en extremo obscuros: es difícil derivar sus implicaciones sin un **.purple[bagaje]** formal difícil de adquirir.
+--
+
+  - E.g., teoría de conjuntos, cálculo uni- y multivariable, cálculo integral, combinatoria, análisis, etc.
+
+---
+class: inverse-slide, middle
+
+# Aplicación: 
+
+## Teorema del límite central
+## Ley de los Grandes Números
+
+---
+.content-box-blue[
+  **TLC** 
+  
+  Suponer que una variable aleatoria es de *cualquier* distribución. Si se toman `\(X_1, X_2, \dots, X_n\)` muestras, la media muestral `\(\bar X_n\)` tiene distribución normal conforme `\(n \rightarrow \infty\)`.
+
+$$
+  Z = \lim_{n \rightarrow \infty} \left( \frac{\bar X_n - \mu}{\sigma\sqrt{n}} \right)\; \text{ tiene distribución normal estándar}
+$$
+
+]
+--
+
+.content-box-blue[
+  **LGN** 
+  
+  Suponer que se realiza un experimento aleatorio `\(n\)` veces. El valor promedio del resultado se aproxima al valor esperado conforme `\(n \rightarrow \infty\)`
+
+$$
+  \bar{X}_n \rightarrow \mu\; \text{ cuando } n \rightarrow \infty
+$$
+
+]
+
+---
+class: middle
+
+Ambos teoremas están basados *conceptualmente* en la idea de repetición de un evento muchas (o infinito número de veces).
+
+--
+  
+Con un lenguaje de programación sencillo, como **`Python`** o **`R`**, ilustrar ambos teoremas, y por ende el concepto de distribución muestral de la media, es muy sencillo.
+
+
+---
+class: black-slide, middle, center
+
+## .white[Teorema del límite central]
+## .white[Simulación en `Python::manim`]
+
+&lt;video width="70%" height="70%" controls id="my_video"&gt;
+  &lt;source src="img/CentralLimitTheorem.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+
+
+---
+class: black-slide, middle, center
+
+## .white[Ley de los Grandes Números]
+## .white[Simulación en `R::gganimate`]
+
+&lt;img src="img/prop_animation.gif" alt="funny animation GIF" width="50%"&gt; 
+
+---
+class: inverse-slide, middle
+
+# Recursos
+## .charcoal[Software libre ]
+---
+
+Lamentablemente, este enfoque tiene un requisito mínimo: aprender a programar. Por fortuna, existen comunidades de software libre que se han encargado de facilitarlo enormemente. .black[Para hacer estas simulaciones no se requiere mucho más que saber usar unas funciones y ciclos for].
+
+--
+
+- **`Python::manim`:** una amplia y creciente comunidad de `manim` ha documentado y creado muchísimos tutoriales para simular y animar diferentes conceptos matemáticos.
+  - Link: [https://www.manim.community/](https://www.manim.community/).
+  - Para cursos/tutoriales de **`Python`** se puede consultar: [https://docs.python.org/3/tutorial/](https://docs.python.org/3/tutorial/)
+
+--
+  
+- **`R`** y **`R::gganimate`**: lo mismo ha sucedido con `R`. 
+  - Link: [https://gganimate.com/articles/gganimate.html](https://gganimate.com/articles/gganimate.html).
+  - Tutoriales para comenzar con **`R`**: [https://datacarpentry.org/R-genomics/index.html](https://datacarpentry.org/R-genomics/index.html).
+
+---
+class: inverse-slide, middle, center
+
+Comentarios o ayuda:
+
+`jaime.alcala@iteso.mx`
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+<script>
+const options = {
+  strings: [
+    '<pre>nutriólogos</pre>', '<pre>psicólogos</pre>', '<pre>médicos</pre>', '<pre>físicos</pre>', '<pre>administradores</pre>', '<pre>contadores</pre>','<pre>médicos</pre>', '<pre>políticos</pre>', '<pre>ciudadanos</pre>'
+  ],
+  typeSpeed: 40,
+  backSpeed: 20,
+  cursorChar: '',
+  loop: true
+};
+
+const typed = new Typed('.typed', options);
+const typed2 = new Typed('.typed-eg', options);
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<style type="text/css">.countdown {
+background: inherit;
+position: absolute;
+cursor: pointer;
+font-size: 1em;
+line-height: 1;
+border-color: #ddd;
+border-width: 3px;
+border-style: solid;
+border-radius: 15px;
+box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.4);
+-webkit-box-shadow: 0px 4px 10px 0px rgba(50, 50, 50, 0.4);
+margin: 0%;
+padding: 7px;
+text-align: center;
+}
+.countdown {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.countdown .countdown-time {
+background: none;
+font-size: 100%;
+padding: 0;
+}
+.countdown-digits {
+color: inherit;
+}
+.countdown.running {
+border-color: #a72929;
+background-color: #ce5e5e;
+}
+.countdown.running .countdown-digits {
+color: #215574;
+font-weight: bold;
+}
+.countdown.finished {
+border-color: #D83A20;
+background-color: #F04124;
+}
+.countdown.finished .countdown-digits {
+color: #3C1099;
+}
+.countdown.running.warning {
+border-color: #CFAE24;
+background-color: #E6C229;
+}
+.countdown.running.warning .countdown-digits {
+color: #3930AA;
+}
+@-webkit-keyframes blink {
+from {opacity: 1}
+50% {opacity: 0.1}
+to {opacity: 1}
+}
+@keyframes blink {
+from {opacity: 1}
+50% {opacity: 0.1}
+to {opacity: 1}
+}
+.countdown.running.blink-colon .countdown-digits.colon {
+-webkit-animation: blink 2s steps(1, end) 0s infinite;
+animation: blink 2s steps(1, end) 0s infinite;
+}
+</style>
+  <script>var counters = {timer: {}};
+var update_timer = function(timer, force = false) {
+	var secs = timer.value;
+
+	// check if we should update timer or not
+	noup = timer.div.className.match(/noupdate-\d+/);
+	if (!force && noup != null) {
+	  noup = parseInt(noup[0].match(/\d+$/));
+	  if (secs > noup * 2 && secs % noup > 0) { return; }
+	}
+
+	// should we apply or remove warning class?
+	warnwhen = timer.div.dataset.warnwhen;
+	if (warnwhen && warnwhen > 0) {
+	  if (secs <= warnwhen && !timer.div.classList.contains("warning")) {
+	    timer.div.classList.add("warning");
+	  } else if (secs > warnwhen && timer.div.classList.contains("warning")) {
+	    timer.div.classList.remove("warning");
+	  }
+	}
+
+  var mins = Math.floor(secs / 60); // 1 min = 60 secs
+  secs -= mins * 60;
+
+  // Update HTML
+  timer.min.innerHTML = String(mins).padStart(2, 0);
+  timer.sec.innerHTML = String(secs).padStart(2, 0);
+}
+var countdown = function (e) {
+  target = e.target;
+  if (target.classList.contains("countdown-digits")) {
+    target = target.parentElement;
+  }
+  if (target.tagName == "CODE") {
+    target = target.parentElement;
+  }
+
+  // Init counter
+  if (!counters.timer.hasOwnProperty(target.id)) {
+    counters.timer[target.id] = {};
+    // Set the containers
+	  counters.timer[target.id].min = target.getElementsByClassName("minutes")[0];
+  	counters.timer[target.id].sec = target.getElementsByClassName("seconds")[0];
+  	counters.timer[target.id].div = target;
+  }
+
+  if (!counters.timer[target.id].running) {
+    if (!counters.timer[target.id].end) {
+      counters.timer[target.id].end   = parseInt(counters.timer[target.id].min.innerHTML) * 60;
+		  counters.timer[target.id].end  += parseInt(counters.timer[target.id].sec.innerHTML);
+    }
+
+    counters.timer[target.id].value = counters.timer[target.id].end;
+    update_timer(counters.timer[target.id]);
+    if (counters.ticker) counters.timer[target.id].value += 1;
+
+    // Start if not past end date
+    if (counters.timer[target.id].value > 0) {
+      base_class = target.className.replace(/\s?(running|finished)/, "")
+      target.className = base_class + " running";
+      counters.timer[target.id].running = true;
+
+      if (!counters.ticker) {
+        counters.ticker = setInterval(counter_update_all, 1000);
+      }
+    }
+  } else {
+    // Bump timer value if running & clicked
+    counters.timer[target.id].value += counter_bump_increment(counters.timer[target.id].end);
+    update_timer(counters.timer[target.id], force = true);
+    counters.timer[target.id].value += 1;
+  }
+};
+
+var counter_bump_increment = function(val) {
+  if (val <= 30) {
+    return 5;
+  } else if (val <= 300) {
+    return 15;
+  } else if (val <= 3000) {
+    return 30;
+  } else {
+    return 60;
+  }
+}
+
+var counter_update_all = function() {
+  // Iterate over all running timers
+  for (var i in counters.timer) {
+    // Stop if passed end time
+    console.log(counters.timer[i].id)
+    counters.timer[i].value--;
+    if (counters.timer[i].value <= 0) {
+      counters.timer[i].min.innerHTML = "00";
+      counters.timer[i].sec.innerHTML = "00";
+      counters.timer[i].div.className = counters.timer[i].div.className.replace("running", "finished");
+      counters.timer[i].running = false;
+    } else {
+      // Update
+      update_timer(counters.timer[i]);
+
+      // Play countdown sound if data-audio=true on container div
+      let audio = counters.timer[i].div.dataset.audio
+      if (audio && counters.timer[i].value == 5) {
+        counter_play_sound(audio);
+      }
+    }
+  }
+
+  // If no more running timers, then clear ticker
+  var timerIsRunning = false;
+  for (var t in counters.timer) {
+    timerIsRunning = timerIsRunning || counters.timer[t].running
+  }
+  if (!timerIsRunning) {
+    clearInterval(counters.ticker);
+    counters.ticker = null;
+  }
+}
+
+var counter_play_sound = function(url) {
+  if (typeof url === 'boolean') {
+    url = 'libs/countdown/smb_stage_clear.mp3';
+  }
+  sound = new Audio(url);
+  sound.play();
+}
+
+var counter_addEventListener = function() {
+  if (!document.getElementsByClassName("countdown").length) {
+    setTimeout(counter_addEventListener, 2);
+    return;
+  }
+  var counter_divs = document.getElementsByClassName("countdown");
+  console.log(counter_divs);
+  for (var i = 0; i < counter_divs.length; i++) {
+    counter_divs[i].addEventListener("click", countdown, false);
+  }
+};
+
+counter_addEventListener();
+</script>
+</head>
+<body>
+<div class="countdown" id="timer_62c4e937" style="top:0;right:0;margin:0%;padding:7px;font-size:1em;z-index:100" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">20</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</body>
+</html>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
